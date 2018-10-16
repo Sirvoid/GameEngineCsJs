@@ -13,8 +13,8 @@ namespace GameEngineJS.Graphics
             ctx = (CanvasRenderingContext2D)canvas.GetContext("2d");
         }
 
-        public void Draw(int x, int y, int w, int h, dynamic img) => Draw(x, y, w, h, 0, img, false, 1);
-        public void Draw(int x,int y,int w, int h, float r, dynamic img, bool follow, float alpha) {
+        public void Draw(float x, float y, float w, float h, dynamic img) => Draw(x, y, w, h, 0, img, false, 1);
+        public void Draw(float x, float y, float w, float h, float r, dynamic img, bool follow, float alpha) {
             ctx.DrawImage(img, x, y, w, h);
         }
     }
