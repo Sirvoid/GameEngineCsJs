@@ -9,7 +9,7 @@ namespace GameEngineJS
     {
         public HTMLCanvasElement canvas { get; set;}
         public Drawer drawer { get; set; }
-
+        
         public Game(int canvasID,string color) {
             canvas = Document.QuerySelector<HTMLCanvasElement>("canvas#" + canvasID);
             drawer = new Drawer(canvas);
