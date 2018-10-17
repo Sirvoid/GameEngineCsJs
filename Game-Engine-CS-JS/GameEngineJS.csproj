@@ -36,12 +36,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Events\KeyBoardEvent.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Sprite.cs" />
-    <Compile Include="Graphics\DisplayList.cs" />
+    <Compile Include="Display\Camera.cs" />
+    <Compile Include="Display\DisplayList.cs" />
     <Compile Include="Graphics\Drawer.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Graphics\Scene.cs" />
+    <Compile Include="Graphics\Image.cs" />
+    <Compile Include="Display\Scene.cs" />
     <Compile Include="Math\Vector2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\Scheduler.cs" />

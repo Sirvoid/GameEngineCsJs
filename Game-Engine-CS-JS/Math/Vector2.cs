@@ -8,5 +8,10 @@ namespace GameEngineJS.Math
     {
         public float X { get; set; }
         public float Y { get; set; }
+
+        public Vector2(float _x , float _y) {
+            X = _x;
+            Y = _y;
+        }
     }
 }

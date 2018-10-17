@@ -1,0 +1,11 @@
+C:\Users\alexandre\Source\Repos\Sirvoid\GameEngineCsJs\Game-Engine-CS-JS\bin\Debug\GameEngineJS.dll
+C:\Users\alexandre\Source\Repos\Sirvoid\GameEngineCsJs\Game-Engine-CS-JS\bin\Debug\GameEngineJS.pdb
+C:\Users\alexandre\Source\Repos\Sirvoid\GameEngineCsJs\Game-Engine-CS-JS\bin\Debug\Bridge.dll
+C:\Users\alexandre\Source\Repos\Sirvoid\GameEngineCsJs\Game-Engine-CS-JS\bin\Debug\Bridge.Html5.dll
+C:\Users\alexandre\Source\Repos\Sirvoid\GameEngineCsJs\Game-Engine-CS-JS\bin\Debug\Newtonsoft.Json.dll
+C:\Users\alexandre\Source\Repos\Sirvoid\GameEngineCsJs\Game-Engine-CS-JS\bin\Debug\Bridge.xml
+C:\Users\alexandre\Source\Repos\Sirvoid\GameEngineCsJs\Game-Engine-CS-JS\bin\Debug\Bridge.Html5.xml
+C:\Users\alexandre\Source\Repos\Sirvoid\GameEngineCsJs\Game-Engine-CS-JS\bin\Debug\Newtonsoft.Json.xml
+C:\Users\alexandre\Source\Repos\Sirvoid\GameEngineCsJs\Game-Engine-CS-JS\obj\Debug\GameEngineJS.csprojResolveAssemblyReference.cache
+C:\Users\alexandre\Source\Repos\Sirvoid\GameEngineCsJs\Game-Engine-CS-JS\obj\Debug\GameEngineJS.dll
+C:\Users\alexandre\Source\Repos\Sirvoid\GameEngineCsJs\Game-Engine-CS-JS\obj\Debug\GameEngineJS.pdb

@@ -14,7 +14,7 @@ namespace GameEngineJS.System
             Update();
         }
 
-        public void Schedule(Action methods) {
+        public void Add(Action methods) {
             actionList.Add(() => methods());
         }
 

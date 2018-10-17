@@ -4,25 +4,25 @@ using Bridge.Html5;
 using GameEngineJS.Graphics;
 using GameEngineJS.System;
 using GameEngineJS.GameObjects;
+using GameEngineJS.Display;
 
 namespace GameEngineJS
 {
     public class Game
     {
-        public HTMLCanvasElement canvas { get; set;}
+        
         public Drawer drawer { get; set; }
         public Scheduler scheduler { get; set; }
 
-        private Scene scene;
+        public Scene scene { get; set; }
         private DisplayList displayList;
         
-        public Game(int canvasID,string color) {
-            canvas = Document.QuerySelector<HTMLCanvasElement>("canvas#" + canvasID);
-            drawer = new Drawer(canvas);
+        public Game(string canvasID,string color) {
+            
             displayList = new DisplayList();
-            scene = new Scene(displayList,drawer);
+            scene = new Scene(displayList,canvasID,color);
             scheduler = new Scheduler();
-            scheduler.Schedule(scene.Refresh);
+            scheduler.Add(scene.Refresh);
         }
 
         public void AddChild(GameObject obj) {
