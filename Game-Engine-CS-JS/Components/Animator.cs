@@ -27,6 +27,22 @@ namespace GameEngineJS.Components
             _playing = true;
         }
 
+        public void GotoAndStop(string animationName) => GotoAndStop(animationName, 0);
+        public void GotoAndStop(string animationName, int frame)
+        {
+            currentAnimation = animationName;
+            currentFrame = frame;
+            _playing = false;
+        }
+
+        public void Stop() {
+            _playing = false;
+        }
+
+        public void Start() {
+            _playing = true;
+        }
+
         public void Create(string animationName, List<Image> list){
             animations[animationName] = list;
         }

@@ -17,9 +17,10 @@ namespace GameEngineJS.GameObjects
         public Dictionary<string, Component> components = new Dictionary<string, Component>();
 
         //Public Methods
-        public void AddComponent(string instanceName, Component component)
+        public Component AddComponent(string instanceName, Component component)
         {
             components[instanceName] = component;
+            return components[instanceName];
         }
     }
 }
