@@ -7,17 +7,17 @@ namespace GameEngineJS.Graphics
 {
     public class Drawer
     {
-        public CanvasRenderingContext2D ctx { get; set; }
-        private HTMLCanvasElement canvas { get; set; }
+        private CanvasRenderingContext2D _ctx;
+        private HTMLCanvasElement _canvas;
 
-        public Drawer(HTMLCanvasElement _canvas) {
-            ctx = (CanvasRenderingContext2D)_canvas.GetContext("2d");
-            canvas = _canvas;
+        public Drawer(HTMLCanvasElement canvas) {
+            _ctx = (CanvasRenderingContext2D)canvas.GetContext("2d");
+            _canvas = canvas;
         }
 
         public void FillScreen(string color) {
-            ctx.FillStyle = color;
-            ctx.FillRect(0,0,canvas.Width,canvas.Height);
+            _ctx.FillStyle = color;
+            _ctx.FillRect(0,0,_canvas.Width,_canvas.Height);
         }
 
         public void Draw(float x, float y, float w, float h, dynamic img) => Draw(x, y, w, h, 0, img, false, 1);
@@ -25,7 +25,7 @@ namespace GameEngineJS.Graphics
             if (img.data != null) {
                 img = img.data;
             }
-            ctx.DrawImage(img, x, y, w, h);
+            _ctx.DrawImage(img, x, y, w, h);
         }
     }
 }

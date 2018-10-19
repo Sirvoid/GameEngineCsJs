@@ -22,18 +22,18 @@ namespace GameEngineJS.Events
             Document.AddEventListener(EventType.KeyUp, DoKeyUp);
         }
 
-        public void DoKeyPress(Event e) {
+        private void DoKeyPress(Event e) {
             if (OnKeyPressEvents == null) return;
             OnKeyPressEvents.Invoke(e.As<KeyboardEvent>().KeyCode);
         }
 
-        public void DoKeyDown(Event e)
+        private void DoKeyDown(Event e)
         {
             if (OnKeyDownEvents == null) return;
             OnKeyDownEvents.Invoke(e.As<KeyboardEvent>().KeyCode);
         }
 
-        public void DoKeyUp(Event e)
+        private void DoKeyUp(Event e)
         {
             if (OnKeyUpEvents == null) return;
             OnKeyUpEvents.Invoke(e.As<KeyboardEvent>().KeyCode);

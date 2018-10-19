@@ -13,23 +13,23 @@ namespace GameEngineJS.Display
 
         public Camera camera { get; set; }
 
-        private DisplayList mainDisplayList;
-        private Drawer drawer;
-        private HTMLCanvasElement canvas;
-        private string color;
+        private DisplayList _mainDisplayList;
+        private Drawer _drawer;
+        private HTMLCanvasElement _canvas;
+        private string _color;
 
-        public Scene(DisplayList objList,string canvasID,string _color) {
+        public Scene(DisplayList objList,string canvasID,string color) {
             camera = new Camera();
-            mainDisplayList = objList;
-            canvas = Document.QuerySelector<HTMLCanvasElement>("canvas#" + canvasID);
-            drawer = new Drawer(canvas);
-            color = _color;
+            _mainDisplayList = objList;
+            _canvas = Document.QuerySelector<HTMLCanvasElement>("canvas#" + canvasID);
+            _drawer = new Drawer(_canvas);
+            _color = color;
         }
 
         public void Refresh() {
-            drawer.FillScreen(color);
-            foreach (GameObject obj in mainDisplayList.list) {
-                drawer.Draw(obj.position.X - camera.position.X, obj.position.Y - camera.position.Y, obj.size.X, obj.size.Y, obj.image);
+            _drawer.FillScreen(_color);
+            foreach (GameObject obj in _mainDisplayList.list) {
+                _drawer.Draw(obj.position.X - camera.position.X, obj.position.Y - camera.position.Y, obj.size.X, obj.size.Y, obj.image);
             }
         }
     }

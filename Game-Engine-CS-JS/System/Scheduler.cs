@@ -8,19 +8,19 @@ namespace GameEngineJS.System
 {
     public class Scheduler
     {
-        private List<Action> actionList = new List<Action>();
+        private List<Action> _actionList = new List<Action>();
 
-        public Scheduler() {
+        internal Scheduler() {
             Update();
         }
 
         public void Add(Action methods) {
-            actionList.Add(() => methods());
+            _actionList.Add(() => methods());
         }
 
         public void Update()
         {
-            foreach (Action a in actionList) {
+            foreach (Action a in _actionList) {
                 a();
             }
 
