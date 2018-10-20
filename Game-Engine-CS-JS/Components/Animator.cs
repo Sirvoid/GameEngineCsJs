@@ -7,7 +7,7 @@ namespace GameEngineJS.Components
 {
     public class Animator : Component
     {
-        public Dictionary<string, List<Image>> animations { get; set; }
+        private Dictionary<string, List<Image>> _animations { get; set; }
         public string currentAnimation { get; set; } = "" ;
         public int currentFrame { get; set; } = 0;
         public int fps { get; set; } = 1;
@@ -17,7 +17,7 @@ namespace GameEngineJS.Components
 
         public Animator(GameObject parent) : base(parent)
         {
-            animations = new Dictionary<string, List<Image>>();
+            _animations = new Dictionary<string, List<Image>>();
         }
 
         public void GotoAndPlay(string animationName) => GotoAndPlay(animationName, 0);
@@ -44,7 +44,7 @@ namespace GameEngineJS.Components
         }
 
         public void Create(string animationName, List<Image> list){
-            animations[animationName] = list;
+            _animations[animationName] = list;
         }
 
         internal override void Update() {
@@ -54,11 +54,10 @@ namespace GameEngineJS.Components
             double delta = now - lastTimeFrame;
             if (delta > 1000/fps) {
                 currentFrame++;
-                if (currentFrame >= animations[currentAnimation].Count) {
+                if (currentFrame >= _animations[currentAnimation].Count) {
                     currentFrame = 0;
                 }
-                Console.Write(currentFrame + " " + currentAnimation);
-                parent.image = animations[currentAnimation][currentFrame];
+                parent.image = _animations[currentAnimation][currentFrame];
 
                 lastTimeFrame = now;
             }

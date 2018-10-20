@@ -1,7 +1,7 @@
 ﻿using System;
 using Bridge;
 using Newtonsoft.Json;
-using GameEngineJS.Math;
+using GameEngineJS.Maths;
 
 namespace GameEngineJS.Display
 {

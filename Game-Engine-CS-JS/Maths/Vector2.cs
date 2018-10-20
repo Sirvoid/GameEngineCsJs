@@ -2,7 +2,7 @@
 using Bridge;
 using Newtonsoft.Json;
 
-namespace GameEngineJS.Math
+namespace GameEngineJS.Maths
 {
     public class Vector2
     {

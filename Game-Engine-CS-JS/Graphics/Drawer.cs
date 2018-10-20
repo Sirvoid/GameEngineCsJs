@@ -22,10 +22,26 @@ namespace GameEngineJS.Graphics
 
         public void Draw(float x, float y, float w, float h, dynamic img) => Draw(x, y, w, h, 0, img, false, 1);
         public void Draw(float x, float y, float w, float h, float r, dynamic img, bool follow, float alpha) {
+            _ctx.ImageSmoothingEnabled = false;
+            _canvas.Style.ImageRendering = ImageRendering.Pixelated;
+            _ctx.Save();
+
             if (img.data != null) {
                 img = img.data;
             }
+
+            //Object Rotation
+            float ox = x + (w / 2);
+            float oy = y + (h / 2);
+
+            _ctx.Translate(ox, oy);
+            _ctx.Rotate((r) * Math.PI / 180); //degree
+            _ctx.Translate(-ox, -oy);
+            //-------
+
             _ctx.DrawImage(img, x, y, w, h);
+
+            _ctx.Restore();
         }
     }
 }
