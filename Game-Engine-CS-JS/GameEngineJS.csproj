@@ -40,6 +40,7 @@
     <Compile Include="Components\Collision.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\ComponentReader.cs" />
+    <Compile Include="Components\Movement.cs" />
     <Compile Include="Events\KeyBoardEvent.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Sprite.cs" />
