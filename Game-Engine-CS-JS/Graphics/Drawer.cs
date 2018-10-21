@@ -26,7 +26,22 @@ namespace GameEngineJS.Graphics
             _canvas.Style.ImageRendering = ImageRendering.Pixelated;
             _ctx.Save();
 
-            if (img.data != null) {
+            float sx = 0;
+            float sy = 0;
+            float sw = w;
+            float sh = h;
+
+            if (img.spriteSizeX != null && img.spriteSizeY != null) {
+                SpriteSheet img2 = (SpriteSheet)img;
+                sx = img2.currentIndex % ((w-1) / img2.spriteSizeX) * img2.spriteSizeX;
+                sy = (float)Math.Floor(img2.currentIndex / ((w-1) / img2.spriteSizeY)) * img2.spriteSizeY;
+                Console.Write(sx + " " +sy);
+                sw = img2.spriteSizeX;
+                sh = img2.spriteSizeY;
+            }
+
+            if (img.data != null)
+            {
                 img = img.data;
             }
 
@@ -39,7 +54,7 @@ namespace GameEngineJS.Graphics
             _ctx.Translate(-ox, -oy);
             //-------
 
-            _ctx.DrawImage(img, x, y, w, h);
+            _ctx.DrawImage(img, sx, sy, sw, sh, x, y, w, h);
 
             _ctx.Restore();
         }

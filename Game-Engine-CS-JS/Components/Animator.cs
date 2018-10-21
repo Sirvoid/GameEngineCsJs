@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using GameEngineJS.GameObjects;
 using GameEngineJS.Graphics;
+using Bridge;
+using Bridge.Html5;
 
 namespace GameEngineJS.Components
 {
     public class Animator : Component
     {
-        private Dictionary<string, List<Image>> _animations { get; set; }
+        private Dictionary<string, List<Union<Image,uint>>> _animations { get; set; }
         public string currentAnimation { get; set; } = "" ;
         public int currentFrame { get; set; } = 0;
         public int fps { get; set; } = 1;
@@ -17,7 +19,7 @@ namespace GameEngineJS.Components
 
         public Animator(GameObject parent) : base(parent)
         {
-            _animations = new Dictionary<string, List<Image>>();
+            _animations = new Dictionary<string, List<Union<Image, uint>>>();
         }
 
         public void GotoAndPlay(string animationName) => GotoAndPlay(animationName, 0);
@@ -43,7 +45,18 @@ namespace GameEngineJS.Components
             _playing = true;
         }
 
-        public void Create(string animationName, List<Image> list){
+        public void Create(string animationName, List<uint> list) {
+            List<Union<Image, uint>> t = new List<Union<Image, uint>>();
+            t = list.As<List<Union<Image, uint>>>();
+            Create(animationName, t);
+        }
+        public void Create(string animationName, List<Image> list)
+        {
+            List<Union<Image, uint>> t = new List<Union<Image, uint>>();
+            t = list.As<List<Union<Image, uint>>>();
+            Create(animationName, t);
+        }
+        public void Create(string animationName, List<Union<Image, uint>> list){
             _animations[animationName] = list;
         }
 
@@ -57,7 +70,15 @@ namespace GameEngineJS.Components
                 if (currentFrame >= _animations[currentAnimation].Count) {
                     currentFrame = 0;
                 }
-                parent.image = _animations[currentAnimation][currentFrame];
+
+                if (!((uint)_animations[currentAnimation][currentFrame] >= 0))
+                {
+                    parent.image = (Image)_animations[currentAnimation][currentFrame];
+                }
+                else {
+                    SpriteSheet sheet = (SpriteSheet)parent.image;
+                    sheet.currentIndex = (uint)_animations[currentAnimation][currentFrame];
+                }
 
                 lastTimeFrame = now;
             }

@@ -15,5 +15,10 @@ namespace GameEngineJS.Graphics
             data.Src = src;
 
         }
+
+        public Image(HTMLImageElement img)
+        {
+            data = img;
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace GameEngineJS.GameObjects
     public class Sprite : GameObject
     {
         //Constructor
-        public Sprite(Vector2 _position, Vector2 _size, Union<HTMLCanvasElement, Image> _image) {
+        public Sprite(Vector2 _position, Vector2 _size, Union<HTMLCanvasElement, Image, SpriteSheet> _image) {
             position = _position;
             size = _size;
             image = _image;
