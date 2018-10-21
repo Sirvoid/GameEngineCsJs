@@ -1,10 +1,10 @@
 ﻿using System;
 using Bridge;
 using Bridge.Html5;
-using Newtonsoft.Json;
 using GameEngineJS.Maths;
 using GameEngineJS.Graphics;
 using GameEngineJS.Components;
+using GameEngineJS.Display;
 using System.Collections.Generic;
 
 namespace GameEngineJS.GameObjects
@@ -16,6 +16,8 @@ namespace GameEngineJS.GameObjects
         public float angle { get; set; }
         public Union<HTMLCanvasElement, Image> image { get; set; }
         public Dictionary<string, Component> components = new Dictionary<string, Component>();
+        internal DisplayList displayList = new DisplayList();
+        internal GameObject _parent;
 
         //Public Methods
         public Component AddComponent(string instanceName, Component component)
@@ -23,5 +25,10 @@ namespace GameEngineJS.GameObjects
             components[instanceName] = component;
             return components[instanceName];
         }
+
+        public void AddChild(GameObject obj) {
+            displayList.Add(obj,this);
+        }
+
     }
 }

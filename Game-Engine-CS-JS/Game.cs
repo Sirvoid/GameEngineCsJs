@@ -33,7 +33,7 @@ namespace GameEngineJS
         }
 
         public void AddChild(GameObject obj) {
-            _displayList.Add(obj);
+            _displayList.Add(obj,null);
         }
     }
 }

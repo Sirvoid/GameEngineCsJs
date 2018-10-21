@@ -19,7 +19,21 @@ namespace GameEngineJS.Components
                 {
                     component.Value.Update();
                 }
+                recursiveUpdate(obj);
             }
         }
+
+        private void recursiveUpdate(GameObject obj) {
+            if (displayList.list.Count <= 0) return;
+            foreach (GameObject obj2 in obj.displayList.list)
+            {
+                foreach (KeyValuePair<string, Component> component in obj2.components)
+                {
+                    component.Value.Update();
+                }
+                recursiveUpdate(obj2);
+            }
+        }
+
     }
 }

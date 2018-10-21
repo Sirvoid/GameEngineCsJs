@@ -19,16 +19,63 @@ namespace GameEngineJS.Components
             _boxes.Add(new Vector4(x1,y1,width,height));
         }
 
+        private float ParentPosCalculationX(float x, GameObject parent) {
+            float adding = 0;
+            float angleAdding = 0;
+
+            if (parent._parent != null) {
+                adding = ParentPosCalculationX(parent.position.X, parent._parent);
+                angleAdding = (float)(Math.Cos(parent._parent.angle * Math.PI / 180)) * x;
+            }
+
+            if (parent._parent == null) adding += parent.position.X;
+
+            return  adding + angleAdding;
+        }
+
+        private float ParentPosCalculationY(float y, GameObject parent)
+        {
+            float adding = 0;
+            float angleAdding = 0;
+
+            if (parent._parent != null)
+            {
+                adding = ParentPosCalculationY(parent.position.Y, parent._parent);
+                angleAdding = (float)(Math.Sin(parent._parent.angle * Math.PI / 180)) * y;
+            }
+
+            if (parent._parent == null) adding += parent.position.Y;
+
+            return adding + angleAdding;
+        }
+
         public bool HitTestObject(GameObject obj) {
+
+            float px = parent.position.X;
+            float py = parent.position.Y;
+            float p2x = obj.position.X;
+            float p2y = obj.position.Y;
+
+            if (parent._parent != null) {
+                px = ParentPosCalculationX(parent.position.X,  parent); 
+                py = ParentPosCalculationY(parent.position.Y,  parent);
+            }
+
+            if (obj._parent != null)
+            {
+                p2x = ParentPosCalculationX(obj.position.X, obj);
+                p2y = ParentPosCalculationY(obj.position.Y, obj);
+            }
+
             foreach (Component cp in obj.components.Values) {
                 if (cp.GetType() == typeof(Collision)) {
                     Collision c = (Collision)cp;
                     foreach (Vector4 b in _boxes) {
                         foreach (Vector4 b2 in c._boxes) {
-                            if (b.X + parent.position.X < b2.X + b2.Z + obj.position.X &&
-                               b.X + b.Z + parent.position.X > b2.X + obj.position.X &&
-                               b.Y + parent.position.Y < b2.Y + b2.W + obj.position.Y &&
-                               b.W + b.Y + parent.position.Y > b2.Y + obj.position.Y) {
+                            if (b.X + px < b2.X + p2x + b2.Z &&
+                               b.X + b.Z + px > b2.X + p2x &&
+                               b.Y + py < b2.Y + b2.W + p2y &&
+                               b.W + b.Y + py  > b2.Y + p2y ) {
                                 return true;
                             }
                         }
@@ -39,12 +86,22 @@ namespace GameEngineJS.Components
         }
 
         public bool HitTestPoint(float x,float y) {
+
+            float px = parent.position.X;
+            float py = parent.position.Y;
+
+            if (parent._parent != null)
+            {
+                px = ParentPosCalculationX(parent.position.X, parent);
+                py = ParentPosCalculationX(parent.position.Y, parent);
+            }
+
             foreach (Vector4 b in _boxes)
             {
-                if (x < b.X + parent.position.X + b.Z &&
-                   x > b.X + parent.position.X &&
-                   y < b.Y + parent.position.Y + b.W &&
-                   y > b.Y + parent.position.Y) {
+                if (x < b.X + px + b.Z &&
+                   x > b.X + px &&
+                   y < b.Y + py + b.W &&
+                   y > b.Y + py) {
                     return true;
                 }
             }

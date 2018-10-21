@@ -10,8 +10,9 @@ namespace GameEngineJS.Display
     {
         public List<GameObject> list { get; set; } = new List<GameObject>() ;
 
-        public void Add(GameObject obj) {
+        public void Add(GameObject obj,GameObject parent) {
             list.Add(obj);
+            obj._parent = parent;
         }
     }
 }
