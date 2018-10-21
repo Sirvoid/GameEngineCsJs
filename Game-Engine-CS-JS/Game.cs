@@ -6,6 +6,7 @@ using GameEngineJS.System;
 using GameEngineJS.GameObjects;
 using GameEngineJS.Display;
 using GameEngineJS.Components;
+using GameEngineJS.GameObjects.TileMap;
 
 namespace GameEngineJS
 {
@@ -32,6 +33,10 @@ namespace GameEngineJS
             scheduler.Add(_componentReader.update);
         }
 
+        public void AddChild(TileMap obj)
+        {
+            _displayList.Add(obj, null);
+        }
         public void AddChild(GameObject obj) {
             _displayList.Add(obj,null);
         }

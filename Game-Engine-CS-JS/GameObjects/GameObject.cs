@@ -5,6 +5,8 @@ using GameEngineJS.Maths;
 using GameEngineJS.Graphics;
 using GameEngineJS.Components;
 using GameEngineJS.Display;
+using GameEngineJS.GameObjects;
+using GameEngineJS.GameObjects.TileMap;
 using System.Collections.Generic;
 
 namespace GameEngineJS.GameObjects
@@ -24,6 +26,10 @@ namespace GameEngineJS.GameObjects
         {
             components[instanceName] = component;
             return components[instanceName];
+        }
+
+        public void AddChild(TileMap.TileMap tileMap) {
+            displayList.Add(tileMap, this);
         }
 
         public void AddChild(GameObject obj) {

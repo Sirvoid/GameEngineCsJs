@@ -31,11 +31,13 @@ namespace GameEngineJS.Graphics
             float sw = w;
             float sh = h;
 
+            if (img == null) return;
+
             if (img.spriteSizeX != null && img.spriteSizeY != null) {
                 SpriteSheet img2 = (SpriteSheet)img;
-                sx = img2.currentIndex % ((w-1) / img2.spriteSizeX) * img2.spriteSizeX;
-                sy = (float)Math.Floor(img2.currentIndex / ((w-1) / img2.spriteSizeY)) * img2.spriteSizeY;
-                Console.Write(sx + " " +sy);
+                if (img2.data.Width == 0) return; 
+                sx = (img2.currentIndex % (img2.data.Width / img2.spriteSizeX)) * img2.spriteSizeX;
+                sy = (float)Math.Floor(img2.currentIndex / ((double)img2.data.Width / img2.spriteSizeX)) * img2.spriteSizeY;
                 sw = img2.spriteSizeX;
                 sh = img2.spriteSizeY;
             }

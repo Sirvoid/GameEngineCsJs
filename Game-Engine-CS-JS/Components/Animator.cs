@@ -9,12 +9,12 @@ namespace GameEngineJS.Components
 {
     public class Animator : Component
     {
-        private Dictionary<string, List<Union<Image,uint>>> _animations { get; set; }
-        public string currentAnimation { get; set; } = "" ;
+        private Dictionary<string, List<Union<Image, uint>>> _animations { get; set; }
+        public string currentAnimation { get; set; } = "";
         public int currentFrame { get; set; } = 0;
         public int fps { get; set; } = 1;
 
-        private bool _playing = false;
+        public bool playing { get; private set; } = false;
         private double lastTimeFrame = 0;
 
         public Animator(GameObject parent) : base(parent)
@@ -26,7 +26,7 @@ namespace GameEngineJS.Components
         public void GotoAndPlay(string animationName, int frame) {
             currentAnimation = animationName;
             currentFrame = frame;
-            _playing = true;
+            playing = true;
         }
 
         public void GotoAndStop(string animationName) => GotoAndStop(animationName, 0);
@@ -34,15 +34,25 @@ namespace GameEngineJS.Components
         {
             currentAnimation = animationName;
             currentFrame = frame;
-            _playing = false;
+
+            if (!((uint)_animations[currentAnimation][currentFrame] >= 0))
+            {
+                parent.image = (Image)_animations[currentAnimation][currentFrame];
+            }
+            else {
+                SpriteSheet sheet = (SpriteSheet)parent.image;
+                sheet.currentIndex = (uint)_animations[currentAnimation][currentFrame];
+            }
+
+            playing = false;
         }
 
         public void Stop() {
-            _playing = false;
+            playing = false;
         }
 
         public void Start() {
-            _playing = true;
+            playing = true;
         }
 
         public void Create(string animationName, List<uint> list) {
@@ -61,7 +71,7 @@ namespace GameEngineJS.Components
         }
 
         internal override void Update() {
-            if (!_playing) return;
+            if (!playing) return;
 
             double now = DateTime.Now.Subtract(DateTime.MinValue.AddYears(2017)).TotalMilliseconds;
             double delta = now - lastTimeFrame;

@@ -7,13 +7,13 @@ namespace GameEngineJS.Events
 {
     public class KeyBoardEvent
     {
-        public delegate void KeyPressEvent(int keycode);
+        public delegate void KeyPressEvent(string key);
         public event KeyPressEvent OnKeyPressEvents;
 
-        public delegate void KeyDownEvent(int keycode);
+        public delegate void KeyDownEvent(string key);
         public event KeyDownEvent OnKeyDownEvents;
 
-        public delegate void KeyUpEvent(int keycode);
+        public delegate void KeyUpEvent(string key);
         public event KeyUpEvent OnKeyUpEvents;
 
         public KeyBoardEvent() {
@@ -24,19 +24,19 @@ namespace GameEngineJS.Events
 
         private void DoKeyPress(Event e) {
             if (OnKeyPressEvents == null) return;
-            OnKeyPressEvents.Invoke(e.As<KeyboardEvent>().KeyCode);
+            OnKeyPressEvents.Invoke(e.As<KeyboardEvent>().Key);
         }
 
         private void DoKeyDown(Event e)
         {
             if (OnKeyDownEvents == null) return;
-            OnKeyDownEvents.Invoke(e.As<KeyboardEvent>().KeyCode);
+            OnKeyDownEvents.Invoke(e.As<KeyboardEvent>().Key);
         }
 
         private void DoKeyUp(Event e)
         {
             if (OnKeyUpEvents == null) return;
-            OnKeyUpEvents.Invoke(e.As<KeyboardEvent>().KeyCode);
+            OnKeyUpEvents.Invoke(e.As<KeyboardEvent>().Key);
         }
 
     }
