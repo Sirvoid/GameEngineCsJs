@@ -53,7 +53,6 @@ namespace GameEngineJS.GameObjects.TileMap
             request.Open("get",url);
             request.Send();
 
-
         }
 
         private void LoadTiled(Event e) {
