@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GameEngineJS.Graphics;
 using GameEngineJS.Maths;
+using Bridge.Html5;
 
 namespace GameEngineJS.GameObjects.TileMap
 {
 
     public class TileMap
     {
+        private XMLHttpRequest request;
+
         internal Dictionary<string, Layer> layers { get; set; }
         internal SpriteSheet _tileSheet;
-
         internal Vector2I _size;
 
         public Vector2 position { get; set; }
@@ -25,8 +24,9 @@ namespace GameEngineJS.GameObjects.TileMap
             _size = size;
         }
 
-        public void AddLayer(string name,uint index) {
+        public Layer AddLayer(string name,uint index) {
             layers[name] = new Layer(index, this);
+            return layers[name];
         }
 
         public void RemoveLayer(string name) {
@@ -39,6 +39,45 @@ namespace GameEngineJS.GameObjects.TileMap
 
         public int GetTile(string layer, Vector2I pos) {
             return layers[layer].GetTile((uint)pos.X, (uint)pos.Y);
+        }
+
+        public void LoadTiledJson(string url, uint numberOfLayers) {
+
+            for (uint i = 0; i < numberOfLayers; i++) {
+                AddLayer(i+"", i);
+            }
+
+            request = new XMLHttpRequest();
+
+            request.OnLoad += LoadTiled;
+            request.Open("get",url);
+            request.Send();
+
+
+        }
+
+        private void LoadTiled(Event e) {
+            dynamic a = JSON.Parse(request.ResponseText);
+            _size.X = a.width;
+            _size.Y = a.height;
+
+            for (uint i = 0; i < a.layers.length; i++)
+            {
+                dynamic layerjs = a.layers[i];
+
+                Layer layer = layers[i + ""];
+                
+                layerjs = layerjs.data;
+
+                for (int j = 0; j < layerjs.length; j++) {
+
+                    int indexX = j % _size.X;
+                    int indexY = (int)Math.Floor((float)(j / _size.X));
+
+                    layer.SetTile((uint)indexX, (uint)indexY, layerjs[j]-1, true);
+                }
+            }
+
         }
 
     }

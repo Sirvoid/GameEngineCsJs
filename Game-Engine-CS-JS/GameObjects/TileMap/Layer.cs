@@ -26,9 +26,9 @@ namespace GameEngineJS.GameObjects.TileMap
             _sizeY = (uint)tileMap._size.Y;
             data = new int[_sizeX, _sizeY];
 
-            for (uint y = 0; y < _sizeY; y++) {
-                for (uint x = 0; x < _sizeX; x++) {
-                    data[x, y] = -1;
+            for (var i = 0; i < _sizeX; i++) {
+                for (var j = 0; j < _sizeY; j++){
+                    data[i, j] = -1;
                 }
             }
 
@@ -45,7 +45,8 @@ namespace GameEngineJS.GameObjects.TileMap
 
         }
 
-        private void Construct(Event e) {
+        internal void Construct() => Construct(new Event(""));
+        internal void Construct(Event e) {
             for (uint y = 0; y < _sizeY; y++) {
                 for (uint x = 0; x < _sizeX; x++){
                     SetTile(x,y,data[x,y],true);
@@ -70,8 +71,8 @@ namespace GameEngineJS.GameObjects.TileMap
                 data[x, y] = tile;
 
                 if (image == null) return;
-                float case_x = data[x, y] % _sizeX * _tilesW;
-                float case_y = (float)Math.Floor((float)data[x, y] / _sizeX) * _tilesH;
+                float case_x = (data[x, y] % _tilesW) * _tilesW;
+                float case_y = (float)Math.Floor((float)data[x, y] / _tilesW) * _tilesH;
 
                 ctx.DrawImage(_sheet.data, case_x, case_y, _tilesW, _tilesH, x * _tilesW, y * _tilesH, _tilesW, _tilesH);
             }
