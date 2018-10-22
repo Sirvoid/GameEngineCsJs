@@ -76,7 +76,7 @@ namespace GameEngineJS.GameObjects.TileMap
 
                 ctx.DrawImage(_sheet.data, case_x, case_y, _tilesW, _tilesH, x * _tilesW, y * _tilesH, _tilesW, _tilesH);
             }
-
+            
         }
 
         internal int GetTile(uint x, uint y) {

@@ -46,7 +46,7 @@ namespace GameEngineJS.GameObjects.TileMap
             for (uint i = 0; i < numberOfLayers; i++) {
                 AddLayer(i+"", i);
             }
-
+            
             request = new XMLHttpRequest();
 
             request.OnLoad += LoadTiled;
