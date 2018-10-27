@@ -1,5 +1,6 @@
 ﻿using System;
 using GameEngineJS.GameObjects;
+using GameEngineJS.Maths;
 
 namespace GameEngineJS.Components
 {
@@ -9,6 +10,7 @@ namespace GameEngineJS.Components
         {
         }
 
+        public void MoveToward(Vector2 pos, float speed) => MoveToward(pos.X, pos.Y, speed);
         public void MoveToward(float x, float y, float speed) {
             float dx = x - parent.position.X;
             float dy = y - parent.position.Y;
@@ -18,6 +20,7 @@ namespace GameEngineJS.Components
             parent.position.Y += speed * (float)Math.Sin(angle);
         }
 
+        public void LookAt(Vector2 pos) => LookAt(pos.X, pos.Y);
         public void LookAt(float x,float y) {
             float x2 = parent.position.X - x;
             float y2 = y - parent.position.Y;

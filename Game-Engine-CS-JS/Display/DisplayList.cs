@@ -13,17 +13,29 @@ namespace GameEngineJS.Display
 
         public void Add(TileMap obj, GameObject parent) {
             foreach (Layer l in obj.layers.Values) {
-                AddAt(l,parent,l.index);
+                AddAt(l,parent,(int)l.index);
             }
         }
-
         public void Add(GameObject obj,GameObject parent) {
             list.Add(obj);
             obj._parent = parent;
         }
 
-        public void AddAt(GameObject obj,GameObject parent, uint index) {
-            list.Insert((int)index, obj);
+        public void AddAt(GameObject obj,GameObject parent, int index) {
+            list.Insert(index, obj);
+            obj._parent = parent;
+        }
+
+        public void Remove(GameObject obj)
+        {
+            list.Remove(obj);
+        }
+
+        public void Move(GameObject obj, int index)
+        {
+            int oldIndex = list.IndexOf(obj);
+            list.RemoveAt(oldIndex);
+            list.Insert(index,obj);
         }
 
     }

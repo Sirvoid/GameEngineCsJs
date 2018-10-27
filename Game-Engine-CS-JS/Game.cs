@@ -12,7 +12,7 @@ namespace GameEngineJS
 {
     public class Game
     {
-        
+
         public Drawer drawer { get; set; }
         public Scheduler scheduler { get; set; }
         public Scene scene { get; set; }
@@ -22,11 +22,11 @@ namespace GameEngineJS
         private ComponentReader _componentReader;
 
         public Game(string canvasID) : this(canvasID, "#fff") { }
-        public Game(string canvasID,string color) {
+        public Game(string canvasID, string color) {
             _displayList = new DisplayList();
-            scene = new Scene(_displayList,canvasID,color);
+            scene = new Scene(_displayList, canvasID, color);
             _componentReader = new ComponentReader(_displayList);
-            
+
 
             scheduler = new Scheduler();
             scheduler.Add(scene.Refresh);
@@ -37,8 +37,21 @@ namespace GameEngineJS
         {
             _displayList.Add(obj, null);
         }
+
         public void AddChild(GameObject obj) {
-            _displayList.Add(obj,null);
+            _displayList.Add(obj, null);
+        }
+
+        public void AddChildAt(GameObject obj, int index) {
+            _displayList.AddAt(obj, null, index);
+        }
+
+        public void RemoveChild(GameObject obj) {
+            _displayList.Remove(obj);
+        }
+
+        public void MoveChild(GameObject obj, int index) {
+            _displayList.Move(obj,index);
         }
     }
 }

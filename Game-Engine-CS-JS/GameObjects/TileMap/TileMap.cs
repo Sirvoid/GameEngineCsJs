@@ -33,10 +33,16 @@ namespace GameEngineJS.GameObjects.TileMap
             layers[name] = null;
         }
 
+        public Layer GetLayer(string name) {
+            return layers[name];
+        }
+
+        public void SetTile(string layer, int x, int y, int tile) => SetTile(layer, new Vector2I(x,y), tile);
         public void SetTile(string layer, Vector2I pos, int tile) {
             layers[layer].SetTile((uint)pos.X, (uint)pos.Y, tile,false);
         }
 
+        public int GetTile(string layer, int x, int y) => GetTile(layer, new Vector2I(x,y));
         public int GetTile(string layer, Vector2I pos) {
             return layers[layer].GetTile((uint)pos.X, (uint)pos.Y);
         }
