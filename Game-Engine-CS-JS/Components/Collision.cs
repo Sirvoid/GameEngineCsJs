@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GameEngineJS.GameObjects;
+using GameEngineJS.GameObjects.TileMap;
 using GameEngineJS.Maths;
 
 namespace GameEngineJS.Components
@@ -105,6 +106,56 @@ namespace GameEngineJS.Components
                     return true;
                 }
             }
+            return false;
+        }
+
+        public bool HitTestLayer(Layer layer, int colliderValue) {
+
+            float px = parent.position.X;
+            float py = parent.position.Y;
+
+            if (parent._parent != null)
+            {
+                px = ParentPosCalculationX(parent.position.X, parent);
+                py = ParentPosCalculationX(parent.position.Y, parent);
+            }
+
+            foreach (Vector4 b in _boxes)
+            {
+
+                float totalX = px + b.X;
+                float totalY = py + b.Y;
+
+                float totalX2 = totalX + b.Z;
+                float totalY2 = totalY + b.W;
+
+                int left_tile = (int)Math.Floor((totalX - layer.position.X) / layer.tilesW);
+                int right_tile = (int)Math.Floor((totalX2 - layer.position.X) / layer.tilesW);
+                int top_tile = (int)Math.Floor((totalY - layer.position.Y) / layer.tilesH);
+                int bottom_tile = (int)Math.Floor((totalY2 - layer.position.Y) / layer.tilesH);
+
+                for (int y = top_tile-1; y <= bottom_tile+1; y++) {
+                    for (int x = left_tile-1; x <= right_tile+1; x++) {
+                        if (x < 0 || x > layer.sizeX - 1 || y > layer.sizeY - 1 || y < 0) continue;
+                        int collider = layer.collisionData[x,y];
+                        if (collider != colliderValue) continue;
+
+                        float tileX = (x * layer.tilesW) + layer.position.X;
+                        float tileY = (y * layer.tilesH) + layer.position.Y;
+
+                        float tileX2 = tileX + layer.tilesW;
+                        float tileY2 = tileY + layer.tilesH;
+
+                   
+                        bool overX = (totalX < tileX2) && (totalX2 > tileX);
+                        bool overY = (totalY < tileY2) && (totalY2 > tileY);
+                        if (overX && overY) {
+                            return true;
+                        }
+                    }
+                }
+            }
+
             return false;
         }
 

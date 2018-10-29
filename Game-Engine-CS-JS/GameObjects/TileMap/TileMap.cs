@@ -37,6 +37,18 @@ namespace GameEngineJS.GameObjects.TileMap
             return layers[name];
         }
 
+        public void SetCollision(string layer, int x, int y, int collisionType) => SetCollision(layer, new Vector2I(x, y), collisionType);
+        public void SetCollision(string layer, Vector2I pos, int collisionType)
+        {
+            layers[layer].SetCollision((uint)pos.X, (uint)pos.Y, collisionType);
+        }
+
+        public int GetCollision(string layer, int x, int y) => GetCollision(layer, new Vector2I(x, y));
+        public int GetCollision(string layer, Vector2I pos)
+        {
+            return layers[layer].GetCollision((uint)pos.X, (uint)pos.Y);
+        }
+
         public void SetTile(string layer, int x, int y, int tile) => SetTile(layer, new Vector2I(x,y), tile);
         public void SetTile(string layer, Vector2I pos, int tile) {
             layers[layer].SetTile((uint)pos.X, (uint)pos.Y, tile,false);
