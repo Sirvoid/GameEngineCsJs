@@ -11,10 +11,10 @@ namespace GameEngineJS.Maths
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Vector2I(int _x, int _y)
+        public Vector2I(int X, int Y)
         {
-            X = _x;
-            Y = _y;
+            this.X = X;
+            this.Y = Y;
         }
     }
 }

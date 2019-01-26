@@ -11,12 +11,12 @@ namespace GameEngineJS.Maths
         public float Z { get; set; }
         public float W { get; set; }
 
-        public Vector4(float _x, float _y, float _z, float _w)
+        public Vector4(float X, float Y, float Z, float W)
         {
-            X = _x;
-            Y = _y;
-            Z = _z;
-            W = _w;
+            this.X = X;
+            this.Y = Y;
+            this.Z = Z;
+            this.W = W;
         }
     }
 }

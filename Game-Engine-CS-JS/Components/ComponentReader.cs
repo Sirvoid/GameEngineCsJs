@@ -13,17 +13,17 @@ namespace GameEngineJS.Components
             displayList = list;
         }
 
-        internal void update() {
+        internal void Update() {
             foreach (GameObject obj in displayList.list) {
                 foreach (KeyValuePair<string, Component> component in obj.components)
                 {
                     component.Value.Update();
                 }
-                recursiveUpdate(obj);
+                RecursiveUpdate(obj);
             }
         }
 
-        private void recursiveUpdate(GameObject obj) {
+        private void RecursiveUpdate(GameObject obj) {
             if (displayList.list.Count <= 0) return;
             foreach (GameObject obj2 in obj.displayList.list)
             {
@@ -31,7 +31,7 @@ namespace GameEngineJS.Components
                 {
                     component.Value.Update();
                 }
-                recursiveUpdate(obj2);
+                RecursiveUpdate(obj2);
             }
         }
 

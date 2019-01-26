@@ -9,9 +9,14 @@ namespace GameEngineJS.Maths
         public float X { get; set; }
         public float Y { get; set; }
 
-        public Vector2(float _x , float _y) {
-            X = _x;
-            Y = _y;
+        public Vector2() {
+            X = 0;
+            Y = 0;
+        }
+
+        public Vector2(float X , float Y) {
+            this.X = X;
+            this.Y = Y;
         }
     }
 }

@@ -20,6 +20,7 @@ namespace GameEngineJS.GameObjects.TileMap
         private SpriteSheet _sheet;
 
         public Layer(uint _index, TileMap tileMap) {
+            this.type = "TilemapLayer";
             index = _index;
             tilesW = tileMap._tileSheet.spriteSizeX;
             tilesH = tileMap._tileSheet.spriteSizeY;

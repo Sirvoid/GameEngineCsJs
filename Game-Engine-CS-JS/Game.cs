@@ -30,7 +30,7 @@ namespace GameEngineJS
 
             scheduler = new Scheduler();
             scheduler.Add(scene.Refresh);
-            scheduler.Add(_componentReader.update);
+            scheduler.Add(_componentReader.Update);
         }
 
         public void AddChild(TileMap obj)

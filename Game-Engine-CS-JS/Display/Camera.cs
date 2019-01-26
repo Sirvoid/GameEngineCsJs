@@ -16,9 +16,9 @@ namespace GameEngineJS.Display
             rotation = 0;
         }
 
-        public Camera(Vector2 _position,float _rotation) {
-            position = _position;
-            rotation = _rotation;
+        public Camera(Vector2 position,float rotation) {
+            this.position = position;
+            this.rotation = rotation;
         }
     }
 }

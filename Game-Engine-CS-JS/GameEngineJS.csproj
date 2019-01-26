@@ -46,6 +46,7 @@
     <Compile Include="GameObjects\Sprite.cs" />
     <Compile Include="Display\Camera.cs" />
     <Compile Include="Display\DisplayList.cs" />
+    <Compile Include="GameObjects\TextArea.cs" />
     <Compile Include="GameObjects\TileMap\Layer.cs" />
     <Compile Include="GameObjects\TileMap\TileMap.cs" />
     <Compile Include="Graphics\Drawer.cs" />

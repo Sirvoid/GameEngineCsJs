@@ -15,18 +15,51 @@ namespace GameEngineJS.GameObjects
     {
         private static int IDIncrementer = 0;
 
+        /// <summary>
+        /// Position of the GameObject.
+        /// </summary>
         public Vector2 position { get; set; }
+
+        /// <summary>
+        /// Size of the GameObject.
+        /// </summary>
         public Vector2 size { get; set; }
+        
+        /// <summary>
+        /// Object Angle in degrees.
+        /// </summary>
         public float angle { get; set; }
+
+        /// <summary>
+        /// Unique ID of the GameObject.
+        /// </summary>
         public int ID { get; private set; } = IDIncrementer++;
+
+        /// <summary>
+        /// Image of the GameObject.
+        /// </summary>
         public Union<HTMLCanvasElement, Image, SpriteSheet> image { get; set; }
+        
+        /// <summary>
+        /// List of the object components.
+        /// </summary>
         public Dictionary<string, Component> components = new Dictionary<string, Component>();
+        
+        /// <summary>
+        /// Game Object type.
+        /// </summary>
+        public string type { get; internal set; } = "Unknown";
+
         internal DisplayList displayList = new DisplayList();
         internal GameObject _parent;
 
-        
+
 
         //Public Methods
+
+        /// <summary>
+        /// Add/Link a component to this GameObject.
+        /// </summary>
         public Component AddComponent(string instanceName, Component component)
         {
             components[instanceName] = component;

@@ -20,8 +20,7 @@ namespace GameEngineJS.Graphics
             _ctx.FillRect(0,0,_canvas.Width,_canvas.Height);
         }
 
-        public void Draw(float x, float y, float w, float h, dynamic img) => Draw(x, y, w, h, 0, img, false, 1);
-        public void Draw(float x, float y, float w, float h, float r, dynamic img, bool follow, float alpha) {
+        public void Draw(float x, float y, float w, float h, float r, dynamic img, bool follow = false, float alpha = 1) {
             _ctx.ImageSmoothingEnabled = false;
             _canvas.Style.ImageRendering = ImageRendering.Pixelated;
             _ctx.Save();
@@ -57,7 +56,6 @@ namespace GameEngineJS.Graphics
             //-------
 
             _ctx.DrawImage(img, sx, sy, sw, sh, x, y, w, h);
-
             _ctx.Restore();
         }
     }

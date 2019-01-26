@@ -11,7 +11,7 @@ namespace GameEngineJS.Components
 
         readonly List<Vector4> _boxes;
 
-        public Collision(GameObject _parent) : base(_parent)
+        public Collision(GameObject parent) : base(parent)
         {
             _boxes = new List<Vector4>();
         }

@@ -13,12 +13,13 @@ namespace GameEngineJS.Display
     {
 
         public Camera camera { get; set; }
+        public Mouse mouse { get; set; }
 
         private DisplayList _mainDisplayList;
         private Drawer _drawer;
         private HTMLCanvasElement _canvas;
         private string _color;
-        public Mouse mouse { get; set; }
+        
 
         public Scene(DisplayList objList,string canvasID,string color) {
             camera = new Camera();
@@ -38,10 +39,9 @@ namespace GameEngineJS.Display
         }
 
         private void DrawChild(GameObject obj,float x,float y,float angle) {
-            foreach (GameObject obj2 in obj.displayList.list)
-            {
-                float newX = x + (float)(Math.Cos(obj.angle*Math.PI/180)) * obj2.position.X - camera.position.X;
-                float newY = y + (float)(Math.Sin(obj.angle*Math.PI/180)) * obj2.position.Y - camera.position.Y;
+            foreach (GameObject obj2 in obj.displayList.list) {
+                float newX = x + (float)(Math.Cos(obj.angle*Math.PI/180)) + obj2.position.X - camera.position.X;
+                float newY = y + (float)(Math.Sin(obj.angle*Math.PI/180)) + obj2.position.Y - camera.position.Y;
                 float newAngle = obj2.angle + angle;
 
                 _drawer.Draw(newX, newY, obj2.size.X, obj2.size.Y, newAngle, obj2.image, false, 1);

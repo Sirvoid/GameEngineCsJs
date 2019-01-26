@@ -6,8 +6,8 @@ namespace GameEngineJS.Components
     public class Component
     {
         internal GameObject parent { get; set; }
-        internal Component(GameObject _parent) {
-            parent = _parent;
+        internal Component(GameObject parent) {
+            this.parent = parent;
         }
 
         internal virtual void Update() {}
