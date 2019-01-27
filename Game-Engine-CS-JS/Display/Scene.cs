@@ -33,15 +33,30 @@ namespace GameEngineJS.Display
         public void Refresh() {
             _drawer.FillScreen(_color);
             foreach (GameObject obj in _mainDisplayList.list) {
-                _drawer.Draw(obj.position.X - camera.position.X, obj.position.Y - camera.position.Y, obj.size.X, obj.size.Y, obj.angle, obj.image,false,1);
+
+                float xPos = obj.screenFixed ? obj.position.X : obj.position.X - camera.position.X;
+                float yPos = obj.screenFixed ? obj.position.Y : obj.position.Y - camera.position.Y;
+                _drawer.Draw(xPos, yPos, obj.size.X, obj.size.Y, obj.angle, obj.image,false,1);
                 DrawChild(obj,obj.position.X,obj.position.Y,obj.angle);
             }
         }
 
         private void DrawChild(GameObject obj,float x,float y,float angle) {
+
+            float angleRad = 0;
+            float xarCos = 0;
+            float yarSin = 0;
+
+            if (obj.displayList.list.Count != 0) { 
+                angleRad = (float)(obj.angle * Math.PI / 180);
+                xarCos = x + (float)(Math.Cos(angleRad));
+                yarSin = y + (float)(Math.Sin(angleRad));
+            }
+
             foreach (GameObject obj2 in obj.displayList.list) {
-                float newX = x + (float)(Math.Cos(obj.angle*Math.PI/180)) + obj2.position.X - camera.position.X;
-                float newY = y + (float)(Math.Sin(obj.angle*Math.PI/180)) + obj2.position.Y - camera.position.Y;
+
+                float newX = obj2.screenFixed ? xarCos + obj2.position.X : xarCos + obj2.position.X - camera.position.X;
+                float newY = obj2.screenFixed ? yarSin + obj2.position.Y : yarSin + obj2.position.Y - camera.position.Y;
                 float newAngle = obj2.angle + angle;
 
                 _drawer.Draw(newX, newY, obj2.size.X, obj2.size.Y, newAngle, obj2.image, false, 1);

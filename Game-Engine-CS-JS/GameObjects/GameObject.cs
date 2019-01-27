@@ -11,14 +11,18 @@ using System.Collections.Generic;
 
 namespace GameEngineJS.GameObjects
 {
-    public abstract class GameObject
-    {
+    public abstract class GameObject {
         private static int IDIncrementer = 0;
 
         /// <summary>
         /// Position of the GameObject.
         /// </summary>
         public Vector2 position { get; set; }
+
+        /// <summary>
+        /// Fixed on the screen if true.
+        /// </summary>
+        public bool screenFixed { get; set; } = false;
 
         /// <summary>
         /// Size of the GameObject.

@@ -46,14 +46,16 @@ namespace GameEngineJS.Graphics
                 img = img.data;
             }
 
-            //Object Rotation
-            float ox = x + (w / 2);
-            float oy = y + (h / 2);
+            if(r != 0) { 
+                //Object Rotation
+                float ox = x + (w / 2);
+                float oy = y + (h / 2);
 
-            _ctx.Translate(ox, oy);
-            _ctx.Rotate((r) * Math.PI / 180); //degree
-            _ctx.Translate(-ox, -oy);
-            //-------
+                _ctx.Translate(ox, oy);
+                _ctx.Rotate((r) * Math.PI / 180); //degree
+                _ctx.Translate(-ox, -oy);
+                //-------
+            }
 
             _ctx.DrawImage(img, sx, sy, sw, sh, x, y, w, h);
             _ctx.Restore();
