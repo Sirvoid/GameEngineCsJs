@@ -10,6 +10,11 @@ namespace GameEngineJS.Graphics
         public uint spriteSizeY { get; set; }
         public uint currentIndex { get; set; }
 
+        public SpriteSheet(Image src, uint spriteSizeX, uint spriteSizeY) {
+            data = src.data;
+            this.spriteSizeX = spriteSizeX;
+            this.spriteSizeY = spriteSizeY;
+        }
         public SpriteSheet(string src, uint spriteSizeX, uint spriteSizeY)
         {
             data = new HTMLImageElement();

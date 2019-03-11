@@ -46,6 +46,10 @@ namespace GameEngineJS
             _displayList.AddAt(obj, null, index);
         }
 
+        public void RemoveChild(TileMap obj) {
+            _displayList.Remove(obj);
+        }
+
         public void RemoveChild(GameObject obj) {
             _displayList.Remove(obj);
         }

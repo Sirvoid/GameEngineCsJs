@@ -9,7 +9,7 @@ namespace GameEngineJS.GameObjects.TileMap
     public class Layer : GameObject
     {
         public uint index { get; set; }
-        internal int[,] data { get; set; }
+        public int[,] data { get; set; }
         internal int[,] collisionData { get; set;}
 
         public uint tilesW { get; private set; }
@@ -48,7 +48,7 @@ namespace GameEngineJS.GameObjects.TileMap
 
         }
 
-        internal void Construct() => Construct(new Event(""));
+        public void Construct() => Construct(new Event(""));
         internal void Construct(Event e) {
             for (uint y = 0; y < sizeY; y++) {
                 for (uint x = 0; x < sizeX; x++){

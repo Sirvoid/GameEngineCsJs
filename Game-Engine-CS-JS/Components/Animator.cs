@@ -9,7 +9,7 @@ namespace GameEngineJS.Components
 {
     public class Animator : Component
     {
-        private Dictionary<string, List<Union<Image, uint>>> _animations { get; set; }
+        private Dictionary<string, List<Union<HTMLCanvasElement,Image, uint>>> _animations { get; set; }
         public string currentAnimation { get; set; } = "";
         public int currentFrame { get; set; } = 0;
         public int fps { get; set; } = 1;
@@ -19,7 +19,7 @@ namespace GameEngineJS.Components
 
         public Animator(GameObject parent) : base(parent)
         {
-            _animations = new Dictionary<string, List<Union<Image, uint>>>();
+            _animations = new Dictionary<string, List<Union<HTMLCanvasElement, Image, uint>>>();
         }
 
         public void GotoAndPlay(string animationName) => GotoAndPlay(animationName, 0);
@@ -56,17 +56,25 @@ namespace GameEngineJS.Components
         }
 
         public void Create(string animationName, List<uint> list) {
-            List<Union<Image, uint>> t = new List<Union<Image, uint>>();
-            t = list.As<List<Union<Image, uint>>>();
+            List<Union<HTMLCanvasElement, Image, uint>> t = new List<Union<HTMLCanvasElement, Image, uint>>();
+            t = list.As<List<Union<HTMLCanvasElement, Image, uint>>>();
             Create(animationName, t);
         }
+
         public void Create(string animationName, List<Image> list)
         {
-            List<Union<Image, uint>> t = new List<Union<Image, uint>>();
-            t = list.As<List<Union<Image, uint>>>();
+            List<Union<HTMLCanvasElement, Image, uint>> t = new List<Union<HTMLCanvasElement, Image, uint>>();
+            t = list.As<List<Union<HTMLCanvasElement, Image, uint>>>();
             Create(animationName, t);
         }
-        public void Create(string animationName, List<Union<Image, uint>> list){
+
+        public void Create(string animationName, List<HTMLCanvasElement> list) {
+            List<Union<HTMLCanvasElement, Image, uint>> t = new List<Union<HTMLCanvasElement, Image, uint>>();
+            t = list.As<List<Union<HTMLCanvasElement, Image, uint>>>();
+            Create(animationName, t);
+        }
+
+        public void Create(string animationName, List<Union<HTMLCanvasElement, Image, uint>> list){
             _animations[animationName] = list;
         }
 
@@ -83,7 +91,11 @@ namespace GameEngineJS.Components
 
                 if (!((uint)_animations[currentAnimation][currentFrame] >= 0))
                 {
-                    parent.image = (Image)_animations[currentAnimation][currentFrame];
+                    if (_animations[currentAnimation][currentFrame].GetType() == typeof(Image)) {
+                        parent.image = (Image)_animations[currentAnimation][currentFrame];
+                    } else {
+                        parent.image = (HTMLCanvasElement)_animations[currentAnimation][currentFrame];
+                    }
                 }
                 else {
                     SpriteSheet sheet = (SpriteSheet)parent.image;

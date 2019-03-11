@@ -23,8 +23,8 @@ namespace GameEngineJS.System
             foreach (Action a in _actionList) {
                 a();
             }
-
-            Window.RequestAnimationFrame(Update);
+            Window.SetTimeout(() => Window.RequestAnimationFrame(Update), 1000/60);
+            
         }
     }
 }

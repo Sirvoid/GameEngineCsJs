@@ -26,6 +26,12 @@ namespace GameEngineJS.Display
             obj._parent = parent;
         }
 
+        public void Remove(TileMap obj) {
+            foreach (Layer l in obj.layers.Values) {
+                list.Remove(l);
+            }
+        }
+
         public void Remove(GameObject obj)
         {
             list.Remove(obj);

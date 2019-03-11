@@ -57,7 +57,7 @@ namespace GameEngineJS.Graphics
                 //-------
             }
 
-            _ctx.DrawImage(img, sx, sy, sw, sh, x, y, w, h);
+            _ctx.DrawImage(img, sx, sy, sw, sh, (int)x, (int)y, w, h);
             _ctx.Restore();
         }
     }
