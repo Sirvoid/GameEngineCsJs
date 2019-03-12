@@ -30,6 +30,7 @@ namespace GameEngineJS.GameObjects
             this.color = color;
             this.fontSize = fontSize;
             this.font = font;
+            this.pivot = new Vector2(size.X / 2, size.Y / 2);
         }
 
         private TextArea(Vector2 position, Vector2 size) {

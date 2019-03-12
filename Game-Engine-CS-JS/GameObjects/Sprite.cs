@@ -16,6 +16,7 @@ namespace GameEngineJS.GameObjects
             this.size = size;
             this.image = image;
             this.type = "Sprite";
+            this.pivot = new Vector2(size.X/2,size.Y/2);
         }
     }
 }

@@ -162,12 +162,12 @@
             </summary>
         </member>
         <member name="T:Bridge.WhereAttribute">
-            <summary>
-            Allows to configure flexible constraints for generic type parameters.
+             <summary>
+             Allows to configure flexible constraints for generic type parameters.
             
-            Provided multiple instances of [Where] attribute applied to a single generic type parameter,
-            Bridge will not raise a compilation error if at least one [Where] attribute was met by the type argument.
-            </summary>
+             Provided multiple instances of [Where] attribute applied to a single generic type parameter,
+             Bridge will not raise a compilation error if at least one [Where] attribute was met by the type argument.
+             </summary>
         </member>
         <member name="P:Bridge.WhereAttribute.EnableImplicitConversion">
             <summary>
@@ -769,6 +769,214 @@
             </summary>
             <param name="array">The one-dimensional Array that is the destination of the elements copied from <see cref="T:System.Collections.Generic.Queue`1"/>. The Array must have zero-based indexing.</param>
             <param name="index">The zero-based index in array at which copying begins.</param>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.Add(`0)">
+            <summary>
+            Add the value ITEM to the tree, returns true if added, false if duplicate
+            </summary>
+            <param name="item">item to be added</param>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.AddIfNotPresent(`0)">
+            <summary>
+            Adds ITEM to the tree if not already present. Returns TRUE if value was successfully added
+            or FALSE if it is a duplicate
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.Remove(`0)">
+            <summary>
+            Remove the T ITEM from this SortedSet. Returns true if successfully removed.
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.RotationNeeded(System.Collections.Generic.SortedSet{`0}.Node,System.Collections.Generic.SortedSet{`0}.Node,System.Collections.Generic.SortedSet{`0}.Node)">
+            <summary>
+            Testing counter that can track rotations
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.CreateSetComparer">
+            <summary>
+            Used for deep equality of SortedSet testing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.CreateSetComparer(System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Create a new set comparer for this set, where this set's members' equality is defined by the
+            memberEqualityComparer. Note that this equality comparer's definition of equality must be the
+            same as this set's Comparer's definition of equality
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.SortedSetEquals(System.Collections.Generic.SortedSet{`0},System.Collections.Generic.SortedSet{`0},System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Decides whether these sets are the same, given the comparer. If the EC's are the same, we can
+            just use SetEquals, but if they aren't then we have to manually check with the given comparer
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.ToArray">
+            <summary>
+            Copies this to an array. Used for DebugView
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})">
+             <summary>
+             Transform this set into its union with the IEnumerable OTHER
+            Attempts to insert each element and rejects it if it exists.
+             NOTE: The caller object is important as UnionWith uses the Comparator
+            associated with THIS to check equality
+             Throws ArgumentNullException if OTHER is null
+             </summary>
+             <param name="other"></param>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Transform this set into its intersection with the IEnumerable OTHER
+            NOTE: The caller object is important as IntersectionWith uses the
+            comparator associated with THIS to check equality
+            Throws ArgumentNullException if OTHER is null
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+             Transform this set into its complement with the IEnumerable OTHER
+             NOTE: The caller object is important as ExceptWith uses the
+             comparator associated with THIS to check equality
+             Throws ArgumentNullException if OTHER is null
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+             Transform this set so it contains elements in THIS or OTHER but not both
+             NOTE: The caller object is important as SymmetricExceptWith uses the
+             comparator associated with THIS to check equality
+             Throws ArgumentNullException if OTHER is null
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Checks whether this Tree is a subset of the IEnumerable other
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Checks whether this Tree is a proper subset of the IEnumerable other
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Checks whether this Tree is a super set of the IEnumerable other
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Checks whether this Tree is a proper super set of the IEnumerable other
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Checks whether this Tree has all elements in common with IEnumerable other
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Checks whether this Tree has any elements in common with IEnumerable other
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.CheckUniqueAndUnfoundElements(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+             <summary>
+             This works similar to HashSet's CheckUniqueAndUnfound (description below), except that the bit
+             array maps differently than in the HashSet. We can only use this for the bulk boolean checks.
+            
+             Determines counts that can be used to determine equality, subset, and superset. This
+             is only used when other is an IEnumerable and not a HashSet. If other is a HashSet
+             these properties can be checked faster without use of marking because we can assume
+             other has no duplicates.
+            
+             The following count checks are performed by callers:
+             1. Equals: checks if unfoundCount = 0 and uniqueFoundCount = Count; i.e. everything
+             in other is in this and everything in this is in other
+             2. Subset: checks if unfoundCount >= 0 and uniqueFoundCount = Count; i.e. other may
+             have elements not in this and everything in this is in other
+             3. Proper subset: checks if unfoundCount > 0 and uniqueFoundCount = Count; i.e
+             other must have at least one element not in this and everything in this is in other
+             4. Proper superset: checks if unfound count = 0 and uniqueFoundCount strictly less
+             than Count; i.e. everything in other was in this and this had at least one element
+             not contained in other.
+            
+             An earlier implementation used delegates to perform these checks rather than returning
+             an ElementCount struct; however this was changed due to the perf overhead of delegates.
+             </summary>
+             <param name="other"></param>
+             <param name="returnIfUnfound">Allows us to finish faster for equals and proper superset
+             because unfoundCount must be 0.</param>
+             <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.GetViewBetween(`0,`0)">
+            <summary>
+            Returns a subset of this tree ranging from values lBound to uBound
+            Any changes made to the subset reflect in the actual tree
+            </summary>
+            <param name="lowerValue">Lowest Value allowed in the subset</param>
+            <param name="upperValue">Highest Value allowed in the subset</param>
+        </member>
+        <member name="T:System.Collections.Generic.SortedSet`1.TreeSubSet">
+            <summary>
+            This class represents a subset view into the tree. Any changes to this view
+            are reflected in the actual tree. Uses the Comparator of the underlying tree.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.TreeSubSet.AddIfNotPresent(`0)">
+            <summary>
+            Additions to this tree need to be added to the underlying tree as well
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.TreeSubSet.VersionCheck">
+            <summary>
+            checks whether this subset is out of date. updates if necessary.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSet`1.TryGetValue(`0,`0@)">
+            <summary>
+            Searches the set for a given value and returns the equal value it finds, if any.
+            </summary>
+            <param name="equalValue">The value to search for.</param>
+            <param name="actualValue">The value from the set that the search found, or the default value of <typeparamref name="T"/> when the search yielded no match.</param>
+            <returns>A value indicating whether the search was successful.</returns>
+            <remarks>
+            This can be useful when you want to reuse a previously stored reference instead of
+            a newly constructed one (so that more sharing of references can occur) or to look up
+            a value that has more complete data than the value you currently have, although their
+            comparer functions indicate they are equal.
+            </remarks>
+        </member>
+        <member name="T:System.Collections.Generic.SortedSetEqualityComparer`1">
+            <summary>
+            A class that generates an IEqualityComparer for this SortedSet. Requires that the definition of
+            equality defined by the IComparer for this SortedSet be consistent with the default IEqualityComparer
+            for the type T. If not, such an IEqualityComparer should be provided through the constructor.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSetEqualityComparer`1.#ctor(System.Collections.Generic.IComparer{`0},System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Create a new SetEqualityComparer, given a comparer for member order and another for member equality (these
+            must be consistent in their definition of equality)
+            </summary>
         </member>
         <member name="T:System.Collections.Generic.ISet`1">
             <summary>
@@ -4136,7 +4344,7 @@
             Gets the task associated with this exception.
             </summary>
             <remarks>
-            It is permissible for no Task to be associated with a 
+            It is permissible for no Task to be associated with a
             <see cref="T:System.Threading.Tasks.TaskCanceledException"/>, in which case
             this property will return null.
             </remarks>
@@ -4418,7 +4626,7 @@
         </member>
         <member name="M:System.UnitySerializationHolder.GetRealObject(System.Runtime.Serialization.StreamingContext)">
             <summary>
-            A helper method that returns the SerializationInfo that a class utilizing 
+            A helper method that returns the SerializationInfo that a class utilizing
             UnitySerializationHelper should return from a call to GetObjectData. It contains
             the unityType (defined above) and any optional data (used only for the reflection types).
             </summary>
@@ -13391,7 +13599,7 @@
             <returns>
             A signed number indicating the relative values of this instance and <paramref name="other"/>.
             Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
             than <paramref name="other"/>.
             </returns>
         </member>
@@ -13489,7 +13697,7 @@
             <returns>
             A signed number indicating the relative values of this instance and <paramref name="other"/>.
             Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
             than <paramref name="other"/>.
             </returns>
         </member>
@@ -13575,7 +13783,7 @@
             <returns>
             A signed number indicating the relative values of this instance and <paramref name="other"/>.
             Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
             than <paramref name="other"/>.
             </returns>
         </member>
@@ -13666,7 +13874,7 @@
             <returns>
             A signed number indicating the relative values of this instance and <paramref name="other"/>.
             Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
             than <paramref name="other"/>.
             </returns>
         </member>
@@ -13764,7 +13972,7 @@
             <returns>
             A signed number indicating the relative values of this instance and <paramref name="other"/>.
             Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
             than <paramref name="other"/>.
             </returns>
         </member>
@@ -13869,7 +14077,7 @@
             <returns>
             A signed number indicating the relative values of this instance and <paramref name="other"/>.
             Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
             than <paramref name="other"/>.
             </returns>
         </member>
@@ -13981,7 +14189,7 @@
             <returns>
             A signed number indicating the relative values of this instance and <paramref name="other"/>.
             Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
             than <paramref name="other"/>.
             </returns>
         </member>
@@ -14100,7 +14308,7 @@
             <returns>
             A signed number indicating the relative values of this instance and <paramref name="other"/>.
             Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
             than <paramref name="other"/>.
             </returns>
         </member>
@@ -14148,7 +14356,7 @@
             <returns>
             A signed number indicating the relative values of this instance and <paramref name="other"/>.
             Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+            instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
             than <paramref name="other"/>.
             </returns>
         </member>

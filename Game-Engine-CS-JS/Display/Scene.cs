@@ -36,7 +36,7 @@ namespace GameEngineJS.Display
 
                 float xPos = obj.screenFixed ? obj.position.X : obj.position.X - camera.position.X;
                 float yPos = obj.screenFixed ? obj.position.Y : obj.position.Y - camera.position.Y;
-                _drawer.Draw(xPos, yPos, obj.size.X, obj.size.Y, obj.angle, obj.image,false,1);
+                _drawer.Draw(xPos, yPos, obj.size.X, obj.size.Y, obj.angle, obj.pivot.X, obj.pivot.Y, obj.image,false,1);
                 DrawChild(obj,obj.position.X,obj.position.Y,obj.angle);
             }
         }
@@ -59,7 +59,7 @@ namespace GameEngineJS.Display
                 float newY = obj2.screenFixed ? yarSin + obj2.position.Y : yarSin + obj2.position.Y - camera.position.Y;
                 float newAngle = obj2.angle + angle;
 
-                _drawer.Draw(newX, newY, obj2.size.X, obj2.size.Y, newAngle, obj2.image, false, 1);
+                _drawer.Draw(newX, newY, obj2.size.X, obj2.size.Y, newAngle, obj2.pivot.X, obj2.pivot.Y, obj2.image, false, 1);
                 DrawChild(obj2,newX,newY,newAngle);
 
             }

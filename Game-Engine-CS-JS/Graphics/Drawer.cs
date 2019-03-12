@@ -20,7 +20,7 @@ namespace GameEngineJS.Graphics
             _ctx.FillRect(0,0,_canvas.Width,_canvas.Height);
         }
 
-        public void Draw(float x, float y, float w, float h, float r, dynamic img, bool follow = false, float alpha = 1) {
+        public void Draw(float x, float y, float w, float h, float r, float pivotX, float pivotY, dynamic img, bool follow = false, float alpha = 1) {
             _ctx.ImageSmoothingEnabled = false;
             _canvas.Style.ImageRendering = ImageRendering.Pixelated;
             _ctx.Save();
@@ -48,8 +48,8 @@ namespace GameEngineJS.Graphics
 
             if(r != 0) { 
                 //Object Rotation
-                float ox = x + (w / 2);
-                float oy = y + (h / 2);
+                float ox = x + pivotX;
+                float oy = y + pivotY;
 
                 _ctx.Translate(ox, oy);
                 _ctx.Rotate((r) * Math.PI / 180); //degree

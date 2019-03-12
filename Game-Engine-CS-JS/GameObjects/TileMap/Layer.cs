@@ -37,6 +37,7 @@ namespace GameEngineJS.GameObjects.TileMap
 
             position = tileMap.position;
             size = new Vector2(sizeX * tilesW, sizeY * tilesH);
+            this.pivot = new Vector2(size.X / 2, size.Y / 2);
 
             HTMLCanvasElement canvas = (HTMLCanvasElement)Document.CreateElement("canvas");
             canvas.Width = (int)Math.Floor(size.X);

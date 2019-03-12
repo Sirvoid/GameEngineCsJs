@@ -35,6 +35,11 @@ namespace GameEngineJS.GameObjects
         public float angle { get; set; }
 
         /// <summary>
+        /// Pivot for angle.
+        /// </summary>
+        public Vector2 pivot { get; set; }
+
+        /// <summary>
         /// Unique ID of the GameObject.
         /// </summary>
         public int ID { get; private set; } = IDIncrementer++;

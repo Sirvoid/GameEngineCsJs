@@ -21,9 +21,10 @@ namespace GameEngineJS.Components
         }
 
         public void LookAt(Vector2 pos) => LookAt(pos.X, pos.Y);
-        public void LookAt(float x,float y) {
-            float x2 = parent.position.X - x;
-            float y2 = y - parent.position.Y;
+        public void LookAt(float x, float y) => LookAt(x,y,parent.position.X,parent.position.Y);
+        public void LookAt(float x,float y, float centerX, float centerY) {
+            float x2 = centerX - x;
+            float y2 = y - centerY;
             float angle = (float)Math.Atan2(x2, y2);
             parent.angle = angle * (float)(180/Math.PI);
         }
